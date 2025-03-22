@@ -43,6 +43,33 @@
             padding: 10px;
             z-index: 10000;
         }
+        /* 全屏模式样式 */
+        .fullscreen-mode {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            background: #000 !important;
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* 全屏时隐藏其他元素 */
+        .hide-in-fullscreen {
+            display: none !important;
+        }
+
+        /* 防止 UC 浏览器滑动退出 */
+        .prevent-swipe {
+            touch-action: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            overscroll-behavior: contain;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-['Poppins']">
@@ -67,7 +94,7 @@
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <div class="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl bg-black game-container mb-12">
+        <div id="gameContainer" class="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl bg-black game-container mb-12">
             <div class="game-controls">
                 <button onclick="toggleFullscreen()" title="Fullscreen">
                     <i class="fas fa-expand"></i>
@@ -147,15 +174,30 @@
 
         function toggleFullscreen() {
             const gameFrame = document.getElementById('gameFrame');
+            const gameContainer = document.getElementById('gameContainer');
+            const allElements = document.querySelectorAll('body > *:not(#gameContainer)');
+
             if (!document.fullscreenElement) {
-                if (gameFrame.requestFullscreen) {
-                    gameFrame.requestFullscreen();
-                } else if (gameFrame.webkitRequestFullscreen) {
-                    gameFrame.webkitRequestFullscreen();
-                } else if (gameFrame.msRequestFullscreen) {
-                    gameFrame.msRequestFullscreen();
+                // 进入全屏
+                if (gameContainer.requestFullscreen) {
+                    gameContainer.requestFullscreen();
+                } else if (gameContainer.webkitRequestFullscreen) {
+                    gameContainer.webkitRequestFullscreen();
+                } else if (gameContainer.msRequestFullscreen) {
+                    gameContainer.msRequestFullscreen();
                 }
+
+                // 添加全屏样式
+                gameContainer.classList.add('fullscreen-mode', 'prevent-swipe');
+                gameFrame.classList.add('fullscreen-mode');
+                
+                // 隐藏其他元素
+                allElements.forEach(el => el.classList.add('hide-in-fullscreen'));
+
+                // 阻止触摸滑动事件
+                gameContainer.addEventListener('touchmove', preventSwipe, { passive: false });
             } else {
+                // 退出全屏
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                 } else if (document.webkitExitFullscreen) {
@@ -166,28 +208,60 @@
             }
         }
 
-        window.onload = function() {
-            loadGameDetails();
-            if (!isWechat()) {
-                document.getElementById('wechatTip').style.display = 'none';
-            }
-        };
+        // 阻止滑动事件
+        function preventSwipe(e) {
+            e.preventDefault();
+        }
 
-        document.addEventListener('fullscreenchange', updateFullscreenButton);
-        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
-        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
-        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+        // 监听全屏变化
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 
-        function updateFullscreenButton() {
+        function handleFullscreenChange() {
+            const gameContainer = document.getElementById('gameContainer');
+            const gameFrame = document.getElementById('gameFrame');
+            const allElements = document.querySelectorAll('body > *:not(#gameContainer)');
             const button = document.querySelector('.game-controls button[title="Fullscreen"] i');
+
             if (document.fullscreenElement) {
                 button.classList.remove('fa-expand');
                 button.classList.add('fa-compress');
             } else {
                 button.classList.remove('fa-compress');
                 button.classList.add('fa-expand');
+                
+                // 移除全屏样式
+                gameContainer.classList.remove('fullscreen-mode', 'prevent-swipe');
+                gameFrame.classList.remove('fullscreen-mode');
+                
+                // 显示其他元素
+                allElements.forEach(el => el.classList.remove('hide-in-fullscreen'));
+                
+                // 移除触摸事件监听
+                gameContainer.removeEventListener('touchmove', preventSwipe);
             }
         }
+
+        // 在页面加载时添加触摸事件处理
+        window.addEventListener('load', function() {
+            const gameContainer = document.getElementById('gameContainer');
+            
+            // 阻止默认的触摸事件
+            gameContainer.addEventListener('touchstart', function(e) {
+                if (document.fullscreenElement) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        });
+
+        window.onload = function() {
+            loadGameDetails();
+            if (!isWechat()) {
+                document.getElementById('wechatTip').style.display = 'none';
+            }
+        };
     </script>
 </body>
 </html> 
