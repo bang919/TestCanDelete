@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survivors - Monster Survival Game | Wowlue Games</title>
+    <meta name="description" content="Play Survivors, an intense monster survival game where you fight endless waves of creatures. Level up, collect power-ups, and survive as long as you can!">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        .game-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        .game-controls button {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .game-controls button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .game-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-['Poppins']">
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <a href="../index.html" class="text-blue-500 hover:text-blue-600">← Back to Games</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl bg-black game-container">
+            <div class="game-controls">
+                <button onclick="toggleFullscreen()" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button onclick="toggleOrientation()" title="Rotate Screen">
+                    <i class="fas fa-rotate"></i>
+                </button>
+            </div>
+            <iframe 
+                id="gameFrame"
+                src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html"
+                class="w-full aspect-video border-0"
+                allowfullscreen
+                loading="lazy"
+            ></iframe>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Wowlue Games. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFullscreen() {
+            const gameFrame = document.getElementById('gameFrame');
+            if (!document.fullscreenElement) {
+                if (gameFrame.requestFullscreen) {
+                    gameFrame.requestFullscreen();
+                } else if (gameFrame.webkitRequestFullscreen) {
+                    gameFrame.webkitRequestFullscreen();
+                } else if (gameFrame.msRequestFullscreen) {
+                    gameFrame.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        function toggleOrientation() {
+            if (screen.orientation && screen.orientation.lock) {
+                if (screen.orientation.type.includes('landscape')) {
+                    screen.orientation.lock('portrait').catch(() => {});
+                } else {
+                    screen.orientation.lock('landscape').catch(() => {});
+                }
+            }
+        }
+
+        // 监听全屏变化
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+        function updateFullscreenButton() {
+            const button = document.querySelector('.game-controls button[title="Fullscreen"] i');
+            if (document.fullscreenElement) {
+                button.classList.remove('fa-expand');
+                button.classList.add('fa-compress');
+            } else {
+                button.classList.remove('fa-compress');
+                button.classList.add('fa-expand');
+            }
+        }
+    </script>
+</body>
+</html> 
