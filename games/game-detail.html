@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Game... | Wowlue Games</title>
+    <meta name="description" content="Play the best online games at Wowlue Games">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        .game-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        .game-controls button {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .game-controls button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .game-container {
+            position: relative;
+        }
+        .wechat-tip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-['Poppins']">
+    <div class="wechat-tip" id="wechatTip">
+        在微信中访问？点击右上角 ··· 选择"在浏览器打开"获得最佳体验
+        <button onclick="document.getElementById('wechatTip').style.display='none'" class="ml-2 text-sm underline">
+            知道了
+        </button>
+    </div>
+
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <a href="../index.html" class="text-blue-500 hover:text-blue-600">← Back to Games</a>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-8">
+        <div class="container mx-auto px-4">
+            <h1 id="gameTitle" class="text-4xl md:text-5xl font-bold text-center mb-4">Loading...</h1>
+            <p id="gameDescription" class="text-xl text-center text-blue-100"></p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl bg-black game-container mb-12">
+            <div class="game-controls">
+                <button onclick="toggleFullscreen()" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+            <iframe 
+                id="gameFrame"
+                src="about:blank"
+                class="w-full aspect-video border-0"
+                allowfullscreen
+                loading="lazy"
+            ></iframe>
+        </div>
+
+        <section class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About The Game</h2>
+            <div class="prose max-w-none">
+                <p id="gameAbout" class="text-lg text-gray-600 mb-6"></p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 mt-12">How To Play</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Controls</h3>
+                    <ul id="gameControls" class="list-disc list-inside text-gray-600"></ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Features</h3>
+                    <ul id="gameFeatures" class="list-disc list-inside text-gray-600"></ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Wowlue Games. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script>
+        function loadGameDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            const game = gameConfig[gameId];
+
+            if (!game) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            document.title = `${game.title} | Wowlue Games`;
+            document.getElementById('gameTitle').textContent = game.title;
+            document.getElementById('gameDescription').textContent = game.description;
+            document.getElementById('gameFrame').src = game.iframeUrl;
+            document.getElementById('gameAbout').textContent = game.about;
+
+            const controlsList = document.getElementById('gameControls');
+            game.controls.forEach(control => {
+                const li = document.createElement('li');
+                li.textContent = control;
+                controlsList.appendChild(li);
+            });
+
+            const featuresList = document.getElementById('gameFeatures');
+            game.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+        }
+
+        function isWechat() {
+            return /MicroMessenger/i.test(navigator.userAgent);
+        }
+
+        function toggleFullscreen() {
+            const gameFrame = document.getElementById('gameFrame');
+            if (!document.fullscreenElement) {
+                if (gameFrame.requestFullscreen) {
+                    gameFrame.requestFullscreen();
+                } else if (gameFrame.webkitRequestFullscreen) {
+                    gameFrame.webkitRequestFullscreen();
+                } else if (gameFrame.msRequestFullscreen) {
+                    gameFrame.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        window.onload = function() {
+            loadGameDetails();
+            if (!isWechat()) {
+                document.getElementById('wechatTip').style.display = 'none';
+            }
+        };
+
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+        function updateFullscreenButton() {
+            const button = document.querySelector('.game-controls button[title="Fullscreen"] i');
+            if (document.fullscreenElement) {
+                button.classList.remove('fa-expand');
+                button.classList.add('fa-compress');
+            } else {
+                button.classList.remove('fa-compress');
+                button.classList.add('fa-expand');
+            }
+        }
+    </script>
+</body>
+</html> 
