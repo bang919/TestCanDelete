@@ -3,70 +3,1806 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wowlue Games - Best Online Gaming Collection</title>
-    <meta name="description" content="Play the best online games including Survivors, Plants vs Zombies, and 3D Cube puzzle. Join millions of players worldwide!">
-    <link rel="canonical" href="https://wowlue.com" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Wowlue Games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- 适合原木风的字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        :root {
+            --primary-color: #8d6e63;
+            --secondary-color: #c19a6b;
+            --accent-color: #ffb74d;
+            --bg-color: #f9f3e5;
+            --card-bg: #fffaf0;
+            --text-color: #5d4037;
+            --shadow: 0 4px 15px rgba(141, 110, 99, 0.15);
+            --light-shadow: 0 2px 10px rgba(141, 110, 99, 0.1);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c19a6b' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 20L20 0v20H0zm40 0V0L20 20h20zm0 20l-20 20V20h20zM20 40L0 20v20h20z'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* 木纹纹理效果 */
+        header {
+            background: #a5805c;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm32-65c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238d6e63' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            position: relative;
+            padding: 2.5rem 1rem 3.5rem;
+            text-align: center;
+            box-shadow: var(--light-shadow);
+            border-bottom: 2px solid rgba(141, 110, 99, 0.2);
+            overflow: hidden;
+        }
+
+        /* 添加木板纹理效果 */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+
+        /* 增强标题视觉效果 */
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 700;
+            color: #fff8e1;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 标题发光效果 */
+        header h1::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            top: -10px;
+            bottom: -10px;
+            background: radial-gradient(ellipse at center, rgba(255,183,77,0.3) 0%, rgba(255,183,77,0) 70%);
+            border-radius: 50%;
+            z-index: -2;
+        }
+
+        header p {
+            margin: 1rem 0 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff8e1;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-bar {
+            background: var(--card-bg);
+            padding: 15px;
+            box-shadow: var(--light-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid rgba(141, 110, 99, 0.1);
+            text-align: center;
+        }
+        
+        .categories-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(141, 110, 99, 0.2);
+            border-radius: 22px;
+            background: #fff8e1;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: var(--light-shadow);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .category-btn i {
+            margin-right: 8px;
+            color: #7d4b2b !important;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
+            display: inline-block !important;
+            vertical-align: middle;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover i {
+            color: #cb6d2f !important;
+            transform: scale(1.2);
+        }
+        
+        .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .category-btn.active i {
+            color: #ffb74d !important;
+        }
+        
+        .category-btn:hover {
+            background: #fff2d9;
+            transform: translateY(-2px);
+        }
+        
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .game-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            background: var(--card-bg);
+            position: relative;
+            border: 2px solid rgba(141, 110, 99, 0.1);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(141, 110, 99, 0.25);
+            border-color: var(--secondary-color);
+        }
+        
+        /* 可爱的角标装饰 */
+        .game-card::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.4s;
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* 修改游戏卡片图片容器比例为4:3 */
+        .game-card-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3; /* 修改为4:3比例 */
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+            background-color: #e5ded3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 确保图片适当地填充容器 */
+        .game-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保持图片覆盖整个区域而不变形 */
+            transition: transform 0.3s ease;
+        }
+        
+        /* 悬停效果 */
+        .game-card:hover .game-card-image img {
+            transform: scale(1.05);
+        }
+        
+        /* 图片加载错误时的标题显示 */
+        .game-card-image.error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #c19a6b 0%, #8d6e63 100%);
+            color: #fff;
+            padding: 1rem;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .game-card-image.error::before {
+            content: attr(data-title);
+            line-height: 1.4;
+        }
+        
+        .game-info {
+            padding: 20px;
+        }
+        
+        .game-title {
+            margin: 0;
+            font-size: 1.3em;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-family: 'Baloo 2', cursive;
+        }
+        
+        .game-category {
+            display: inline-block;
+            font-size: 0.8em;
+            padding: 2px 10px;
+            margin-top: 8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 12px;
+        }
+        
+        .game-description {
+            margin: 12px 0;
+            color: var(--text-color);
+            font-size: 0.95em;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+        
+        .play-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(141, 110, 99, 0.3);
+        }
+        
+        .play-btn:hover {
+            background: #7d5f54;
+            box-shadow: 0 6px 15px rgba(141, 110, 99, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* 可爱的动画效果 */
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(50px); }
+            40% { transform: scale(1.05) translateY(-10px); }
+            60% { transform: scale(0.95) translateY(5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .game-card {
+            animation: bounceIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+        }
+
+        /* 延迟动画 */
+        .games-container .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .games-container .game-card:nth-child(2) { animation-delay: 0.2s; }
+        .games-container .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .games-container .game-card:nth-child(4) { animation-delay: 0.4s; }
+        .games-container .game-card:nth-child(5) { animation-delay: 0.5s; }
+        .games-container .game-card:nth-child(6) { animation-delay: 0.6s; }
+        .games-container .game-card:nth-child(7) { animation-delay: 0.7s; }
+        .games-container .game-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .games-container {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                padding: 15px;
+                gap: 20px;
+            }
+            
+            .categories-wrapper {
+                justify-content: center;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 页脚样式 */
+        footer {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            box-shadow: 0 -2px 10px rgba(141, 110, 99, 0.1);
+            border-top: 2px solid rgba(141, 110, 99, 0.2);
+            color: var(--text-color);
+        }
+        
+        /* 小装饰 */
+        .decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+        }
+        
+        .decoration:nth-child(1) {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            top: 20px;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+        
+        .decoration:nth-child(2) {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23c19a6b'%3E%3Cpath d='M503.5 204.6L502.8 202.8L433.1 33.12C428.3 19.75 415.2 12.04 402.2 13.29L195.7 33.27C182.7 34.71 171.1 47.31 169.5 60.29L156.7 192.3L48.12 193.8C34.22 193.1 21.55 203.8 19.72 217.6L2.147 340.5C.1187 354.7 9.172 367.1 22.94 371.9L255.1 479.5L490.4 371.4C504.4 366.6 512.4 352.3 509 338.5L509 336.5L503.5 204.6zM255.1 431.1L48.38 336.9L62.37 240.9L184.7 243.5L205.1 358.9C206.8 371.1 216.3 382.4 229.1 384.7L255.1 431.1zM111.3 190.4L134.1 62.52L321.5 42.58L396.6 220.5L111.3 190.4zM450.8 337.1L255.1 431.1L255.1 384.6L284.1 382.4C297.2 380.8 307.1 371.4 310.2 359.1L326.4 284.5L450.8 337.1z'/%3E%3C/svg%3E");
+            bottom: 30px;
+            right: 15%;
+            transform: rotate(15deg);
+        }
+
+        /* 语言切换按钮样式 */
+        .lang-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff8e1;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-btn.active {
+            background: var(--accent-color);
+            color: var(--text-color);
+            border-color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* 装饰性元素样式 */
+        .decoration-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.6;
+            z-index: 2;
+        }
+        
+        /* 树木元素 */
+        .tree1 {
+            width: 120px;
+            height: 180px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238d6e63'%3E%3Cpath d='M12,2L4,11H7L4,20H20L17,11H20L12,2Z'/%3E%3C/svg%3E");
+            left: 5%;
+            top: 120px;
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 3px rgba(141, 110, 99, 0.3));
+        }
+        
+        .tree2 {
+            width: 100px;
+            height: 150px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a05c2f'%3E%3Cpath d='M12,3L2,12H5V20H19V12H22L12,3Z'/%3E%3C/svg%3E");
+            right: 7%;
+            top: 150px;
+            opacity: 0.25;
+            animation: float 6s ease-in-out infinite reverse;
+            filter: drop-shadow(0 0 3px rgba(141, 110, 99, 0.3));
+        }
+        
+        /* 云朵元素 */
+        .cloud1 {
+            width: 150px;
+            height: 80px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f9f3e5'%3E%3Cpath d='M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z'/%3E%3C/svg%3E");
+            left: 15%;
+            top: 50px;
+            animation: cloudFloat 18s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+            opacity: 0.8;
+        }
+        
+        .cloud2 {
+            width: 100px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f9f3e5'%3E%3Cpath d='M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z'/%3E%3C/svg%3E");
+            right: 20%;
+            top: 80px;
+            animation: cloudFloat 24s linear infinite reverse;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+            opacity: 0.8;
+        }
+        
+        /* 叶子元素 */
+        .leaf1 {
+            width: 40px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c19a6b'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            left: 35%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotate 16s linear infinite;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        }
+        
+        .leaf2 {
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            right: 35%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt1 18s linear infinite 2s;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        }
+        
+        .leaf3 {
+            width: 35px;
+            height: 35px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238d6e63'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            left: 60%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt2 19s linear infinite 4s;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        }
+        
+        /* 动画定义 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes cloudFloat {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(calc(100vw + 150px)); }
+        }
+        
+        /* 添加摇摆下落的动画 */
+        @keyframes fallSwayRotate {
+            0% { 
+                transform: translateY(-50px) translateX(0) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { 
+                opacity: 0.7; 
+                transform: translateY(calc(10vh)) translateX(15px) rotate(20deg);
+            }
+            25% { 
+                transform: translateY(calc(25vh)) translateX(-15px) rotate(70deg);
+            }
+            40% { 
+                transform: translateY(calc(40vh)) translateX(20px) rotate(120deg);
+            }
+            60% { 
+                transform: translateY(calc(60vh)) translateX(-10px) rotate(200deg);
+            }
+            80% { 
+                transform: translateY(calc(80vh)) translateX(5px) rotate(300deg);
+                opacity: 0.7; 
+            }
+            100% { 
+                transform: translateY(calc(100vh + 50px)) translateX(-5px) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+        
+        /* 添加不同的摇摆动画变体 */
+        @keyframes fallSwayRotateAlt1 {
+            0% { 
+                transform: translateY(-50px) translateX(0) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { 
+                opacity: 0.7; 
+                transform: translateY(calc(10vh)) translateX(-20px) rotate(-30deg);
+            }
+            30% { 
+                transform: translateY(calc(30vh)) translateX(25px) rotate(-90deg);
+            }
+            50% { 
+                transform: translateY(calc(50vh)) translateX(-15px) rotate(-180deg);
+            }
+            70% { 
+                transform: translateY(calc(70vh)) translateX(10px) rotate(-270deg);
+            }
+            90% { 
+                transform: translateY(calc(90vh)) translateX(-5px) rotate(-330deg);
+                opacity: 0.7; 
+            }
+            100% { 
+                transform: translateY(calc(100vh + 50px)) translateX(0) rotate(-360deg); 
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fallSwayRotateAlt2 {
+            0% { 
+                transform: translateY(-50px) translateX(0) rotate(0deg); 
+                opacity: 0;
+            }
+            15% { 
+                opacity: 0.7; 
+                transform: translateY(calc(15vh)) translateX(10px) rotate(45deg);
+            }
+            35% { 
+                transform: translateY(calc(35vh)) translateX(-20px) rotate(120deg);
+            }
+            55% { 
+                transform: translateY(calc(55vh)) translateX(25px) rotate(180deg);
+            }
+            75% { 
+                transform: translateY(calc(75vh)) translateX(-15px) rotate(270deg);
+            }
+            90% { 
+                transform: translateY(calc(90vh)) translateX(10px) rotate(330deg);
+                opacity: 0.7; 
+            }
+            100% { 
+                transform: translateY(calc(100vh + 50px)) translateX(0) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+
+        /* 卡通房子和其他装饰元素 */
+        .cartoon-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        /* 卡通房子 */
+        .house {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+        }
+        
+        .house1 {
+            width: 120px;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a67c52'%3E%3Cpath d='M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z'/%3E%3C/svg%3E");
+            left: 5%;
+            bottom: 10%;
+            opacity: 0.6;
+        }
+        
+        .house2 {
+            width: 140px;
+            height: 120px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238d6e63'%3E%3Cpath d='M19,19H5V8.93C7.72,6.63 11.17,5 15,5C16.04,5 17.06,5.12 18.04,5.35L15.36,8.04L18.77,11.46L20,10.24V19M5,20H19V21H5V20M13,10H16V12H13V15H11V12H8V10H11V7H13V10Z'/%3E%3C/svg%3E");
+            right: 7%;
+            bottom: 15%;
+            opacity: 0.7;
+        }
+        
+        .house3 {
+            width: 100px;
+            height: 90px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c19a6b'%3E%3Cpath d='M12,3L2,12H5V20H19V12H22L12,3M12,7.7C14.1,7.7 15.8,9.4 15.8,11.5C15.8,14.5 12,18 12,18C12,18 8.2,14.5 8.2,11.5C8.2,9.4 9.9,7.7 12,7.7M12,10C11.1,10 10.5,10.6 10.5,11.5C10.5,12.4 11.1,13 12,13C12.9,13 13.5,12.4 13.5,11.5C13.5,10.6 12.9,10 12,10Z'/%3E%3C/svg%3E");
+            left: 15%;
+            bottom: 18%;
+            opacity: 0.6;
+        }
+        
+        /* 卡通树木 */
+        .cartoon-tree {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        
+        .tree-round {
+            width: 80px;
+            height: 110px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%238d6e63' d='M11,21V16.74C10.53,16.91 10.03,17 9.5,17C7,17 5,15 5,12.5C5,11.23 5.5,10.09 6.36,9.27C6.13,8.73 6,8.13 6,7.5C6,5 8,3 10.5,3C12.06,3 13.44,3.8 14.25,5C14.33,5 14.41,5 14.5,5C17.54,5 20,7.46 20,10.5C20,13.54 17.54,16 14.5,16C14,16 13.5,15.93 13,15.79V21H11Z'/%3E%3C/svg%3E");
+            right: 20%;
+            bottom: 8%;
+            opacity: 0.7;
+        }
+        
+        .tree-pine {
+            width: 70px;
+            height: 120px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23a5805c' d='M10,21V18H3L8,13H5L10,8H7L12,3L17,8H14L19,13H16L21,18H14V21H10Z'/%3E%3C/svg%3E");
+            left: 25%;
+            bottom: 5%;
+            opacity: 0.6;
+        }
+        
+        /* 卡通云朵 */
+        .cartoon-cloud {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.5;
+        }
+        
+        .cloud-small {
+            width: 80px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23efe5d5'%3E%3Cpath d='M6.5 20Q4.22 20 2.61 18.43 1 16.85 1 14.58 1 12.63 2.17 11.1 3.35 9.57 5.25 9.15 5.88 6.85 7.75 5.43 9.63 4 12 4 14.93 4 16.96 6.04 19 8.07 19 11 20.73 11.2 22.11 12.5 23.5 13.78 23.5 15.75 23.5 17.5 22.25 18.75 21 20 19.25 20Z'/%3E%3C/svg%3E");
+            left: 10%;
+            top: 15%;
+            animation: cloudDrift 35s linear infinite;
+        }
+        
+        .cloud-medium {
+            width: 120px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23efe5d5'%3E%3Cpath d='M6.5 20Q4.22 20 2.61 18.43 1 16.85 1 14.58 1 12.63 2.17 11.1 3.35 9.57 5.25 9.15 5.88 6.85 7.75 5.43 9.63 4 12 4 14.93 4 16.96 6.04 19 8.07 19 11 20.73 11.2 22.11 12.5 23.5 13.78 23.5 15.75 23.5 17.5 22.25 18.75 21 20 19.25 20Z'/%3E%3C/svg%3E");
+            right: 15%;
+            top: 10%;
+            animation: cloudDrift 40s linear infinite reverse;
+        }
+        
+        /* 卡通小路 */
+        .path {
+            position: absolute;
+            width: 160px;
+            height: 80px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d7cec7'%3E%3Cpath d='M11.19,1.36L4.19,8.36C2.31,10.24 2.31,13.24 4.19,15.12L11.19,22.12C13.07,24 16.07,24 17.95,22.12L24.95,15.12C26.83,13.24 26.83,10.24 24.95,8.36L17.95,1.36C16.07,-0.53 13.07,-0.53 11.19,1.36M8.47,6.24C8.5,5.77 8.87,5.39 9.34,5.35C9.88,5.31 10.34,5.71 10.34,6.24C10.34,5.71 10.8,5.31 11.34,5.35C11.81,5.38 12.19,5.77 12.22,6.24C12.26,6.82 11.88,7.31 11.34,7.38C11.87,7.41 12.29,7.86 12.33,8.38C12.38,8.97 11.97,9.47 11.39,9.51C11.87,9.54 12.25,9.95 12.28,10.44C12.31,11.03 11.83,11.5 11.24,11.5C11.83,11.5 12.31,11.97 12.28,12.56C12.25,13.05 11.87,13.46 11.39,13.5C11.97,13.54 12.38,14.03 12.33,14.62C12.29,15.14 11.87,15.59 11.34,15.62C11.88,15.69 12.26,16.18 12.22,16.76C12.19,17.23 11.81,17.62 11.34,17.65C10.8,17.69 10.34,17.3 10.34,16.76C10.34,17.3 9.88,17.69 9.34,17.65C8.87,17.62 8.5,17.23 8.47,16.76C8.43,16.18 8.81,15.69 9.34,15.62C8.8,15.59 8.39,15.14 8.35,14.62C8.3,14.03 8.7,13.54 9.28,13.5C8.8,13.47 8.42,13.05 8.39,12.56C8.36,11.97 8.84,11.5 9.44,11.5C8.84,11.5 8.36,11.03 8.39,10.44C8.42,9.95 8.8,9.54 9.28,9.51C8.7,9.47 8.3,8.97 8.35,8.38C8.39,7.86 8.8,7.41 9.34,7.38C8.81,7.31 8.43,6.82 8.47,6.24Z'/%3E%3C/svg%3E");
+            left: 30%;
+            bottom: 1%;
+            opacity: 0.4;
+            transform: scale(1.5);
+        }
+        
+        /* 卡通动物 */
+        .animal {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        
+        .bird {
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M23 11.5L19.95 10.37C19.69 9.22 19.04 8.56 19.04 8.56C17.4 6.92 14.75 6.92 13.11 8.56L11.63 10.04L5 3.41L4.91 3.5L9.41 8H8.89L3 2.13L2.89 2.25L7.86 7.23C6.79 7.95 6 9.14 6 10.5C6 12.5 7.5 14 9.5 14C9.67 14 9.84 14 10 13.97V15H8V19H9V20H2V22H9C10.1 22 11 21.1 11 20V19H12V15H10V13.97C10.16 14 10.33 14 10.5 14C10.81 14 11.11 13.95 11.4 13.86L13.71 16.17L13.11 16.77C12.88 17 12.73 17.3 12.73 17.62C12.73 17.94 12.88 18.24 13.11 18.47C13.34 18.7 13.64 18.85 13.96 18.85C14.28 18.85 14.58 18.7 14.81 18.47L15.5 17.78L16.77 19.05C17 19.28 17.3 19.43 17.62 19.43C17.94 19.43 18.24 19.28 18.47 19.05C18.7 18.82 18.85 18.52 18.85 18.2C18.85 17.88 18.7 17.58 18.47 17.35L17.78 16.66L19.0 15.39C19.04 15.35 19.07 15.31 19.11 15.27L19.08 15.25C20.04 14.04 20.39 12.5 19.95 10.37L23 11.5'/%3E%3C/svg%3E");
+            right: 25%;
+            top: 30%;
+            animation: birdFly 20s linear infinite alternate;
+        }
+        
+        /* 卡通太阳 */
+        .sun {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z'/%3E%3C/svg%3E");
+            right: 10%;
+            top: 20%;
+            opacity: 0.6;
+            animation: rotateSun 60s linear infinite;
+        }
+        
+        /* 动画定义 */
+        @keyframes cloudDrift {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+        
+        @keyframes birdFly {
+            0% { transform: translate(0, 0) rotate(5deg); }
+            25% { transform: translate(-50px, -20px) rotate(-5deg); }
+            50% { transform: translate(-100px, 0) rotate(5deg); }
+            75% { transform: translate(-50px, 20px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(5deg); }
+        }
+        
+        @keyframes rotateSun {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 调整响应式布局 */
+        @media (max-width: 768px) {
+            .house1, .house2, .house3 {
+                transform: scale(0.7);
+            }
+            
+            .tree-round, .tree-pine {
+                transform: scale(0.7);
+            }
+        }
+
+        /* 收藏按钮样式 */
+        .favorite-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 5;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .favorite-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
+        
+        .favorite-btn i {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        .favorite-btn.active i {
+            color: var(--accent-color);
+        }
+        
+        /* 收藏游戏过滤按钮 */
+        .favorite-filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--card-bg);
+            border: 1px solid var(--secondary-color);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+        
+        .favorite-filter:hover {
+            background: #fff;
+        }
+        
+        .favorite-filter.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .favorite-filter i {
+            font-size: 0.9rem;
+        }
+        
+        /* 没有收藏游戏时的提示 */
+        .no-favorites {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin: 20px 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .no-favorites i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            opacity: 0.7;
+        }
     </style>
 </head>
-<body class="bg-gray-50 font-['Poppins']">
-    <header class="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-8">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl md:text-5xl font-bold text-center mb-4">Wowlue Games</h1>
-            <p class="text-xl text-center text-blue-100">Your Ultimate Gaming Collection</p>
+<body>
+    <div class="decoration-container">
+        <div class="floating-element tree1"></div>
+        <div class="floating-element tree2"></div>
+        <div class="floating-element cloud1"></div>
+        <div class="floating-element cloud2"></div>
+        
+        <!-- 修改现有落叶 -->
+        <div class="floating-element leaf1" style="
+            width: 40px;
+            height: 40px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23c19a6b%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            left: 35%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotate 16s linear infinite;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        "></div>
+        
+        <div class="floating-element leaf2" style="
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ffb74d%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            right: 35%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt1 18s linear infinite 2s;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        "></div>
+        
+        <div class="floating-element leaf3" style="
+            width: 35px;
+            height: 35px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%238d6e63%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            left: 60%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt2 19s linear infinite 4s;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        "></div>
+        
+        <!-- 修改右侧大落叶 -->
+        <div class="floating-element big-leaf" style="
+            width: 60px;
+            height: 60px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23a05c2f%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            top: 0;
+            right: 8%;
+            opacity: 0;
+            animation: fallSwayRotate 22s linear infinite 1s;
+            filter: drop-shadow(0 0 3px rgba(160, 92, 47, 0.4));
+        "></div>
+        
+        <div class="floating-element big-tree" style="
+            width: 150px;
+            height: 200px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23a05c2f%22%3E%3Cpath d=%22M12,3L2,12H5V20H19V12H22L12,3Z%22/%3E%3C/svg%3E');
+            left: 3%;
+            top: 40%;
+            opacity: 0.3;
+            animation: float 10s ease-in-out infinite;
+        "></div>
+        
+        <!-- 修改额外落叶 -->
+        <div class="floating-element extra-leaf1" style="
+            width: 45px;
+            height: 45px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23c19a6b%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            right: 25%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt1 21s linear infinite 3s;
+            filter: drop-shadow(0 0 3px rgba(193, 154, 107, 0.4));
+        "></div>
+        
+        <div class="floating-element extra-leaf2" style="
+            width: 35px;
+            height: 35px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ffb74d%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            left: 70%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt2 17s linear infinite 5s;
+            filter: drop-shadow(0 0 3px rgba(255, 183, 77, 0.4));
+        "></div>
+        
+        <!-- 添加两个新的落叶，增强视觉多样性 -->
+        <div class="floating-element new-leaf1" style="
+            width: 38px;
+            height: 38px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%238d6e63%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            left: 15%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotate 25s linear infinite 7s;
+            filter: drop-shadow(0 0 2px rgba(141, 110, 99, 0.4));
+        "></div>
+        
+        <div class="floating-element new-leaf2" style="
+            width: 42px;
+            height: 42px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23c19a6b%22%3E%3Cpath d=%22M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z%22/%3E%3C/svg%3E');
+            right: 15%;
+            top: 0;
+            opacity: 0;
+            animation: fallSwayRotateAlt1 23s linear infinite 9s;
+            filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.4));
+        "></div>
+    </div>
+
+    <header>
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="zh">中文</button>
+            <button class="lang-btn" data-lang="en">English</button>
         </div>
+        <h1 class="site-title" data-translate="siteTitle"></h1>
+        <p class="site-subtitle" data-translate="siteSubtitle"></p>
     </header>
 
-    <main class="container mx-auto px-4 py-12">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Survivors Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
-                <img src="images/survivors/cover.png" onerror="this.src='images/survivors/cover.jpg'" alt="Survivors" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Survivors</h2>
-                    <p class="text-gray-600 mb-4">Survive endless waves of monsters in this thrilling action-packed adventure!</p>
-                    <a href="games/game-detail.html?id=survivors" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">Play Now</a>
+    <div class="category-bar">
+        <div class="container">
+            <div class="categories-wrapper">
+                <button class="category-btn active" data-category="all">
+                    <span class="lang-zh">全部游戏</span>
+                    <span class="lang-en">All Games</span>
+                </button>
+                <div class="categories-container" id="categoriesContainer">
+                    <!-- 动态生成分类按钮 -->
                 </div>
-            </div>
-
-            <!-- Plants vs Zombies Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
-                <img src="images/pvz/cover.png" onerror="this.src='images/pvz/cover.jpg'" alt="Plants vs Zombies" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Plants vs Zombies</h2>
-                    <p class="text-gray-600 mb-4">Defend your garden from zombie invasion with powerful plants!</p>
-                    <a href="games/game-detail.html?id=pvz" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">Play Now</a>
-                </div>
-            </div>
-
-            <!-- 3D Cube Puzzle Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
-                <img src="images/3d-cube/cover.png" onerror="this.src='images/3d-cube/cover.jpg'" alt="3D Cube Puzzle" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">3D Cube Puzzle</h2>
-                    <p class="text-gray-600 mb-4">Challenge your mind with this innovative 3D puzzle game!</p>
-                    <a href="games/game-detail.html?id=3d-cube" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">Play Now</a>
-                </div>
-            </div>
-
-            <!-- Cartoon Racing Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
-                <img src="images/cartoon-racing/cover.png" onerror="this.src='images/cartoon-racing/cover.jpg'" alt="Cartoon Mini Racing" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Cartoon Mini Racing</h2>
-                    <p class="text-gray-600 mb-4">Race with cute cartoon cars in this exciting racing adventure!</p>
-                    <a href="games/game-detail.html?id=cartoon-racing" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">Play Now</a>
-                </div>
+                <button class="favorite-filter" id="favoriteFilter">
+                    <i class="fas fa-heart"></i>
+                    <span class="lang-zh">我的收藏</span>
+                    <span class="lang-en">My Favorites</span>
+                </button>
             </div>
         </div>
+    </div>
+
+    <main class="games-container" id="gamesContainer">
+        <!-- Games will be dynamically added here -->
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Wowlue Games. All rights reserved.</p>
-        </div>
+    <footer>
+        <div class="decoration"></div>
+        <div class="decoration"></div>
+        <p>© 2023 Wowlue Games. All rights reserved.</p>
     </footer>
+
+    <script src="games/config.js"></script>
+    <script>
+        // 全局变量定义
+        let currentLang = 'zh'; // 默认语言设置为中文
+
+        // 语言配置 - 移到脚本开头
+        const translations = {
+            'zh': {
+                welcomeTitle: '欢迎来到 Wowlue 游戏',
+                welcomeSubtitle: '尽情享受我们精选的游戏吧！',
+                allGames: '全部游戏',
+                playNow: '立即玩',
+                backToHome: '返回首页',
+                gameDetails: '游戏详情',
+                controls: '操作方式',
+                features: '游戏特色',
+                about: '关于游戏',
+                addToFavorites: '收藏此游戏',
+                favorited: '已收藏',
+                myFavorites: '我的收藏',
+                noFavorites: '您还没有收藏任何游戏',
+                fullscreen: '全屏',
+                exitFullscreen: '退出全屏',
+                // 添加分类名称翻译
+                categoryNames: {
+                    'all': '全部游戏',
+                    'action': '动作',
+                    'arcade': '街机',
+                    'strategy': '策略',
+                    'puzzle': '益智',
+                    'experimental': '实验性',
+                    'rhythm': '音乐节奏'
+                },
+                siteTitle: 'Wowlue 游戏',
+                siteSubtitle: '发现并体验最好玩的在线游戏',
+            },
+            'en': {
+                welcomeTitle: 'Welcome to Wowlue Games',
+                welcomeSubtitle: 'Enjoy our curated collection of games!',
+                allGames: 'All Games',
+                playNow: 'Play Now',
+                backToHome: 'Back to Home',
+                gameDetails: 'Game Details',
+                controls: 'Controls',
+                features: 'Features',
+                about: 'About',
+                addToFavorites: 'Add to Favorites',
+                favorited: 'Favorited',
+                myFavorites: 'My Favorites',
+                noFavorites: 'You haven\'t favorited any games yet',
+                fullscreen: 'Fullscreen',
+                exitFullscreen: 'Exit Fullscreen',
+                // 添加分类名称翻译
+                categoryNames: {
+                    'all': 'All Games',
+                    'action': 'Action',
+                    'arcade': 'Arcade',
+                    'strategy': 'Strategy',
+                    'puzzle': 'Puzzle',
+                    'experimental': 'Experimental',
+                    'rhythm': 'Rhythm'
+                },
+                siteTitle: 'Wowlue Games',
+                siteSubtitle: 'Discover and experience the best online games',
+            }
+        };
+        
+        // 初始化收藏管理器
+        const favoritesManager = {
+            getFavorites() {
+                try {
+                    const favorites = localStorage.getItem('favoriteGames');
+                    return favorites ? JSON.parse(favorites) : [];
+                } catch (e) {
+                    console.error('获取收藏游戏时出错:', e);
+                    return [];
+                }
+            },
+            
+            addFavorite(gameId) {
+                try {
+                    const favorites = this.getFavorites();
+                    if (!favorites.includes(gameId)) {
+                        favorites.push(gameId);
+                        localStorage.setItem('favoriteGames', JSON.stringify(favorites));
+                    }
+                    return favorites;
+                } catch (e) {
+                    console.error('添加收藏游戏时出错:', e);
+                    return [];
+                }
+            },
+            
+            removeFavorite(gameId) {
+                try {
+                    let favorites = this.getFavorites();
+                    favorites = favorites.filter(id => id !== gameId);
+                    localStorage.setItem('favoriteGames', JSON.stringify(favorites));
+                    return favorites;
+                } catch (e) {
+                    console.error('移除收藏游戏时出错:', e);
+                    return [];
+                }
+            },
+            
+            isFavorite(gameId) {
+                try {
+                    return this.getFavorites().includes(gameId);
+                } catch (e) {
+                    console.error('检查游戏是否收藏时出错:', e);
+                    return false;
+                }
+            },
+            
+            toggleFavorite(gameId) {
+                if (this.isFavorite(gameId)) {
+                    return this.removeFavorite(gameId);
+                } else {
+                    return this.addFavorite(gameId);
+                }
+            }
+        };
+        
+        console.log('正在加载页面...');
+        
+        // 修改收藏过滤器按钮的初始化和点击处理
+        function initFavoritesFilter() {
+            const favoriteFilterBtn = document.getElementById('favoriteFilter');
+            if (!favoriteFilterBtn) {
+                console.warn('收藏过滤按钮未找到，跳过初始化');
+                return; // 如果元素不存在，直接返回
+            }
+            
+            favoriteFilterBtn.addEventListener('click', function() {
+                try {
+                    // 取消所有分类按钮的激活状态
+                    const categoryButtons = document.querySelectorAll('.category-btn');
+                    if (categoryButtons && categoryButtons.length > 0) {
+                        categoryButtons.forEach(btn => {
+                            if (btn && btn.classList) {
+                                btn.classList.remove('active');
+                            }
+                        });
+                    }
+                    
+                    // 激活"我的收藏"按钮
+                    if (this && this.classList) {
+                        this.classList.add('active');
+                    } else {
+                        console.warn('无法设置收藏按钮激活状态');
+                    }
+                    
+                    // 过滤显示收藏的游戏
+                    const favorites = favoritesManager.getFavorites();
+                    const gamesContainer = document.getElementById('gamesContainer');
+                    
+                    if (!gamesContainer) {
+                        console.error('找不到游戏容器元素');
+                        return;
+                    }
+                    
+                    if (favorites.length === 0) {
+                        showNoFavoritesMessage();
+                        return;
+                    }
+                    
+                    gamesContainer.innerHTML = '';
+                    
+                    // 添加安全检查，确保能访问translations
+                    const translation = translations && translations[currentLang] ? translations[currentLang] : {};
+                    const playText = translation.playNow || '立即玩';
+                    
+                    // 仅添加已收藏的游戏卡片
+                    Object.entries(window.gameConfig || {}).forEach(([gameId, game]) => {
+                        if (favorites.includes(gameId)) {
+                            // 根据当前语言选择标题和描述
+                            const title = currentLang === 'zh' ? game.title : (game.titleEn || game.title);
+                            const description = currentLang === 'zh' ? game.description : (game.descriptionEn || game.description);
+                            
+                            const gameCard = createGameCard(gameId, {
+                                title: title,
+                                description: description,
+                                coverImage: game.coverImage,
+                                category: game.category,
+                                playText: playText
+                            });
+                            
+                            gamesContainer.innerHTML += gameCard;
+                        }
+                    });
+                    
+                    // 添加动画效果
+                    if (typeof animateGameCards === 'function') {
+                        animateGameCards();
+                    }
+                } catch (error) {
+                    console.error('显示收藏游戏时出错:', error);
+                }
+            });
+        }
+
+        // 修改分类按钮初始化函数，确保点击分类按钮时取消"我的收藏"选中状态
+        function generateCategoryButtons() {
+            try {
+                const categoriesContainer = document.getElementById('categoriesContainer');
+                if (!categoriesContainer) {
+                    console.error('找不到categoriesContainer元素');
+                    return;
+                }
+                
+                categoriesContainer.innerHTML = '';
+                
+                // 手动定义分类图标映射，确保正确显示
+                const iconMap = {
+                    'action': 'fas fa-bolt',
+                    'arcade': 'fas fa-gamepad',
+                    'puzzle': 'fas fa-puzzle-piece',
+                    'racing': 'fas fa-car',
+                    'sports': 'fas fa-basketball-ball',
+                    '3d': 'fas fa-cube',
+                    'strategy': 'fas fa-chess',
+                    'shooting': 'fas fa-crosshairs',
+                    'experimental': 'fas fa-flask',
+                    'rhythm': 'fas fa-music'
+                };
+                
+                // 确保translations和categoryNames存在
+                const translation = (translations && translations[currentLang]) ? translations[currentLang] : {};
+                const categoryNames = translation.categoryNames || {
+                    'all': currentLang === 'zh' ? '全部游戏' : 'All Games',
+                    'action': currentLang === 'zh' ? '动作' : 'Action',
+                    'arcade': currentLang === 'zh' ? '街机' : 'Arcade',
+                    'strategy': currentLang === 'zh' ? '策略' : 'Strategy',
+                    'puzzle': currentLang === 'zh' ? '益智' : 'Puzzle',
+                    'experimental': currentLang === 'zh' ? '实验性' : 'Experimental',
+                    'rhythm': currentLang === 'zh' ? '音乐节奏' : 'Rhythm'
+                };
+                
+                Object.entries(window.gameCategories || {}).forEach(([categoryId, category]) => {
+                    const button = document.createElement('button');
+                    button.className = 'category-btn';
+                    button.setAttribute('data-category', categoryId);
+                    
+                    // 使用翻译或默认值
+                    const categoryName = categoryNames[categoryId] || 
+                                       (currentLang === 'zh' ? category.name : (category.nameEn || category.name));
+                    
+                    // 使用我们的图标映射确保正确图标
+                    const iconClass = iconMap[categoryId] || category.icon || 'fas fa-gamepad';
+                    
+                    // 明确设置HTML内容，确保图标插入正确
+                    button.innerHTML = `<i class="${iconClass}" style="color: #7d4b2b; margin-right: 8px;"></i> ${categoryName}`;
+                    
+                    button.addEventListener('click', () => {
+                        // 取消所有分类按钮的激活状态（包括"我的收藏"按钮）
+                        const allButtons = document.querySelectorAll('.category-btn, .favorite-filter');
+                        if (allButtons && allButtons.length > 0) {
+                            allButtons.forEach(btn => {
+                                if (btn && btn.classList) {
+                                    btn.classList.remove('active');
+                                }
+                            });
+                        }
+                        
+                        // 激活当前点击的分类按钮
+                        if (button && button.classList) {
+                            button.classList.add('active');
+                        }
+                        
+                        // 过滤游戏
+                        filterGamesByCategory(categoryId);
+                    });
+                    
+                    categoriesContainer.appendChild(button);
+                });
+                
+                // 确保全部游戏按钮也有图标
+                const allGamesBtn = document.querySelector('.category-btn[data-category="all"]');
+                if (allGamesBtn) {
+                    const allGamesText = categoryNames.all || (currentLang === 'zh' ? '全部游戏' : 'All Games');
+                    // 保留原有的图标
+                    const iconHTML = allGamesBtn.querySelector('i')?.outerHTML || '<i class="fas fa-th-large" style="color: #7d4b2b; margin-right: 8px;"></i>';
+                    allGamesBtn.innerHTML = `${iconHTML} ${allGamesText}`;
+                    
+                    // 重新绑定全部游戏按钮的点击事件，确保取消"我的收藏"选中状态
+                    allGamesBtn.addEventListener('click', function() {
+                        // 取消所有分类按钮和收藏过滤器的激活状态
+                        const allButtons = document.querySelectorAll('.category-btn, .favorite-filter');
+                        if (allButtons && allButtons.length > 0) {
+                            allButtons.forEach(btn => {
+                                if (btn && btn.classList) {
+                                    btn.classList.remove('active');
+                                }
+                            });
+                        }
+                        
+                        // 激活全部游戏按钮
+                        if (this && this.classList) {
+                            this.classList.add('active');
+                        }
+                        
+                        // 显示所有游戏
+                        filterGamesByCategory('all');
+                    });
+                }
+            } catch (error) {
+                console.error('生成分类按钮时出错:', error);
+            }
+        }
+        
+        // 生成游戏卡片 - 更新为支持多语言
+        function generateGameCards() {
+            try {
+                const gamesContainer = document.getElementById('gamesContainer');
+                if (!gamesContainer) {
+                    console.error('找不到游戏容器元素');
+                    return;
+                }
+                
+                gamesContainer.innerHTML = '';
+                
+                // 确保 gameConfig 存在
+                if (!window.gameConfig || Object.keys(window.gameConfig).length === 0) {
+                    console.error('游戏配置为空或不存在');
+                    gamesContainer.innerHTML = '<p style="text-align: center; padding: 20px;">没有找到可用的游戏配置</p>';
+                    return;
+                }
+
+                // 添加安全检查，确保能访问translations
+                const translation = translations && translations[currentLang] ? translations[currentLang] : {};
+                const playText = translation.playNow || '立即玩';
+                
+                Object.entries(window.gameConfig).forEach(([gameId, game]) => {
+                    // 根据当前语言选择标题和描述
+                    const title = currentLang === 'zh' ? game.title : (game.titleEn || game.title);
+                    const description = currentLang === 'zh' ? game.description : (game.descriptionEn || game.description);
+                    
+                    const gameCard = createGameCard(gameId, {
+                        title: title,
+                        description: description,
+                        coverImage: game.coverImage,
+                        category: game.category,
+                        playText: playText
+                    });
+                    
+                    gamesContainer.innerHTML += gameCard;
+                });
+                
+                // 添加动画效果
+                animateGameCards();
+            } catch (error) {
+                console.error('生成游戏卡片时出错:', error);
+            }
+        }
+        
+        // 创建游戏卡片HTML
+        function createGameCard(gameId, game) {
+            if (!gameId || !game) {
+                console.error('创建游戏卡片时缺少必要信息', { gameId, game });
+                return '';
+            }
+            
+            // 确保必要的属性存在
+            const title = game.title || 'Unknown Game';
+            const description = game.description || '';
+            const coverImage = game.coverImage || '';
+            const category = game.category || '';
+            
+            // 添加默认值，避免playText为undefined
+            const playText = game.playText || (translations[currentLang]?.playNow || '立即玩');
+            
+            const isFavorite = favoritesManager.isFavorite(gameId);
+            const favoriteClass = isFavorite ? 'active' : '';
+            const favoriteIcon = isFavorite ? 'fas fa-heart' : 'far fa-heart';
+            const favoriteTitle = isFavorite ? 
+                (currentLang === 'zh' ? '从收藏中移除' : 'Remove from favorites') :
+                (currentLang === 'zh' ? '添加到收藏' : 'Add to favorites');
+                
+            return `
+                <div class="game-card" data-category="${category}" data-id="${gameId}">
+                    <div class="game-card-image" data-title="${title}">
+                        <button class="favorite-btn ${favoriteClass}" data-id="${gameId}" title="${favoriteTitle}" onclick="toggleFavorite(event, '${gameId}')">
+                            <i class="${favoriteIcon}"></i>
+                        </button>
+                        <img src="${coverImage}" alt="${title}" class="game-image" loading="lazy" 
+                                onerror="this.parentElement.classList.add('error'); this.style.display='none'">
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">${title}</h3>
+                        <p class="game-description">${description}</p>
+                        <a href="games/game-detail.html?id=${gameId}" class="play-btn">${playText}</a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 为游戏卡片添加动画
+        function animateGameCards() {
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${0.1 * index}s`;
+            });
+        }
+        
+        // 按分类过滤游戏
+        function filterGamesByCategory(category) {
+            const container = document.getElementById('gamesContainer');
+            if (!container) {
+                console.error('找不到gamesContainer元素');
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            if (category === 'all') {
+                generateGameCards();
+                return;
+            }
+
+            Object.entries(window.gameConfig || {}).forEach(([gameId, game]) => {
+                if (game.category === category) {
+                    // 根据当前语言选择标题和描述
+                    const title = currentLang === 'zh' ? game.title : (game.titleEn || game.title);
+                    const description = currentLang === 'zh' ? game.description : (game.descriptionEn || game.description);
+                    const playText = translations[currentLang].playNow;
+                    
+                    const gameCard = createGameCard(gameId, {
+                        title: title,
+                        description: description,
+                        coverImage: game.coverImage,
+                        category: game.category,
+                        playText: playText
+                    });
+                    
+                    container.innerHTML += gameCard;
+                }
+            });
+            
+            // 添加动画效果
+            animateGameCards();
+        }
+        
+        // 应用语言
+        function applyLanguage(lang) {
+            try {
+                // 更新当前语言
+                currentLang = lang || 'zh';
+                
+                // 确保translations对象存在
+                if (!translations || !translations[currentLang]) {
+                    console.error(`找不到语言"${currentLang}"的翻译，使用默认值`);
+                    // 继续执行，使用generateGameCards中的默认值
+                }
+                
+                // 设置语言选择器的激活状态
+                const langButtons = document.querySelectorAll('.lang-btn');
+                if (langButtons && langButtons.length > 0) {
+                    langButtons.forEach(btn => {
+                        if (btn && btn.classList) {
+                            const btnLang = btn.getAttribute('data-lang');
+                            if (btnLang === lang) {
+                                btn.classList.add('active');
+                            } else {
+                                btn.classList.remove('active');
+                            }
+                        }
+                    });
+                }
+                
+                // 应用翻译到页面元素
+                const elementsToTranslate = document.querySelectorAll('[data-translate]');
+                if (elementsToTranslate && elementsToTranslate.length > 0) {
+                    elementsToTranslate.forEach(element => {
+                        if (element) {
+                            const key = element.getAttribute('data-translate');
+                            if (key && translations[currentLang] && translations[currentLang][key]) {
+                                element.textContent = translations[currentLang][key];
+                            }
+                        }
+                    });
+                }
+                
+                // 更新"全部游戏"按钮的文本
+                try {
+                    const allGamesBtn = document.querySelector('.category-btn[data-category="all"]');
+                    if (allGamesBtn) {
+                        // 获取当前语言的"全部游戏"文本，带有后备值
+                        const allGamesText = translations[currentLang]?.categoryNames?.all || 
+                                             translations[currentLang]?.allGames || 
+                                             (currentLang === 'zh' ? '全部游戏' : 'All Games');
+                                        
+                        // 保留原有的图标（如果存在）
+                        const icon = allGamesBtn.querySelector('i');
+                        const iconHTML = icon ? icon.outerHTML : '<i class="fas fa-th-large" style="color: #7d4b2b; margin-right: 8px;"></i>';
+                        
+                        allGamesBtn.innerHTML = `${iconHTML} ${allGamesText}`;
+                    }
+                } catch (btnError) {
+                    console.error('更新全部游戏按钮时出错:', btnError);
+                }
+                
+                // 生成游戏卡片
+                try {
+                    generateGameCards();
+                } catch (cardsError) {
+                    console.error('生成游戏卡片时出错:', cardsError);
+                }
+                
+                // 添加分类按钮
+                try {
+                    generateCategoryButtons();
+                } catch (catError) {
+                    console.error('生成分类按钮时出错:', catError);
+                }
+                
+                // 初始化收藏过滤器按钮
+                try {
+                    initFavoritesFilter();
+                } catch (favError) {
+                    console.error('初始化收藏过滤器时出错:', favError);
+                }
+                
+                // 保存语言偏好到本地存储
+                try {
+                    localStorage.setItem('preferredLanguage', lang);
+                } catch (storageError) {
+                    console.error('保存语言偏好时出错:', storageError);
+                }
+            } catch (error) {
+                console.error('应用语言设置时出错:', error);
+            }
+        }
+        
+        // 在页面加载时调整语言按钮的顺序
+        window.addEventListener('DOMContentLoaded', function() {
+            // 将语言切换按钮改为英文在左，中文在右
+            const langSwitcher = document.querySelector('.lang-switcher');
+            if (langSwitcher) {
+                // 清空原有的按钮
+                langSwitcher.innerHTML = '';
+                
+                // 先添加英文按钮
+                const enButton = document.createElement('button');
+                enButton.className = 'lang-btn';
+                enButton.setAttribute('data-lang', 'en');
+                enButton.textContent = 'English';
+                enButton.addEventListener('click', () => {
+                    applyLanguage('en');
+                });
+                langSwitcher.appendChild(enButton);
+                
+                // 再添加中文按钮
+                const zhButton = document.createElement('button');
+                zhButton.className = 'lang-btn';
+                zhButton.setAttribute('data-lang', 'zh');
+                zhButton.textContent = '中文';
+                zhButton.addEventListener('click', () => {
+                    applyLanguage('zh');
+                });
+                langSwitcher.appendChild(zhButton);
+                
+                // 设置初始状态的活跃按钮
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                document.querySelector(`.lang-btn[data-lang="${currentLang}"]`).classList.add('active');
+            }
+        });
+        
+        // 修改现有的window.onload函数
+        window.onload = function() {
+            console.log('页面已加载');
+            
+            try {
+                // 输出游戏配置和分类配置，用于调试
+                console.log('游戏配置:', window.gameConfig);
+                console.log('分类配置:', window.gameCategories);
+                
+                // 确保translations对象在使用前已正确定义
+                if (typeof translations !== 'object' || translations === null) {
+                    console.error('translations对象未定义或非对象类型');
+                    // 创建默认的translations对象
+                    window.translations = {
+                        'zh': {
+                            allGames: '全部游戏',
+                            playNow: '立即玩',
+                            myFavorites: '我的收藏',
+                            categoryNames: {
+                                'all': '全部游戏',
+                                'action': '动作',
+                                'arcade': '街机',
+                                'strategy': '策略',
+                                'puzzle': '益智',
+                                'experimental': '实验性',
+                                'rhythm': '音乐节奏'
+                            }
+                        },
+                        'en': {
+                            allGames: 'All Games',
+                            playNow: 'Play Now',
+                            myFavorites: 'My Favorites',
+                            categoryNames: {
+                                'all': 'All Games',
+                                'action': 'Action',
+                                'arcade': 'Arcade',
+                                'strategy': 'Strategy',
+                                'puzzle': 'Puzzle',
+                                'experimental': 'Experimental',
+                                'rhythm': 'Rhythm'
+                            }
+                        }
+                    };
+                } else {
+                    // 检查并确保translations的结构完整
+                    const requiredKeys = ['zh', 'en'];
+                    const requiredSubkeys = ['playNow', 'allGames', 'categoryNames'];
+                    
+                    requiredKeys.forEach(lang => {
+                        if (!translations[lang]) {
+                            translations[lang] = {};
+                        }
+                        
+                        requiredSubkeys.forEach(key => {
+                            if (!translations[lang][key]) {
+                                if (key === 'categoryNames') {
+                                    translations[lang][key] = {
+                                        'all': lang === 'zh' ? '全部游戏' : 'All Games',
+                                        'action': lang === 'zh' ? '动作' : 'Action',
+                                        'arcade': lang === 'zh' ? '街机' : 'Arcade',
+                                        'strategy': lang === 'zh' ? '策略' : 'Strategy',
+                                        'puzzle': lang === 'zh' ? '益智' : 'Puzzle',
+                                        'experimental': lang === 'zh' ? '实验性' : 'Experimental',
+                                        'rhythm': lang === 'zh' ? '音乐节奏' : 'Rhythm'
+                                    };
+                                } else {
+                                    translations[lang][key] = key === 'playNow' 
+                                        ? (lang === 'zh' ? '立即玩' : 'Play Now')
+                                        : (key === 'allGames' 
+                                            ? (lang === 'zh' ? '全部游戏' : 'All Games')
+                                            : '');
+                                }
+                            }
+                        });
+                    });
+                }
+                
+                // 获取用户首选语言，确保永远不会是undefined
+                const savedLanguage = localStorage.getItem('preferredLanguage');
+                if (savedLanguage && (savedLanguage === 'zh' || savedLanguage === 'en')) {
+                    currentLang = savedLanguage;
+                } else {
+                    // 默认根据浏览器语言设置，如果无法确定则使用中文
+                    currentLang = (navigator.language && navigator.language.startsWith('zh')) ? 'zh' : 'en';
+                }
+                
+                console.log('设置当前语言为:', currentLang);
+                
+                // 应用语言设置
+                applyLanguage(currentLang);
+                
+                // 语言切换按钮的事件监听
+                document.querySelectorAll('.lang-btn').forEach(button => {
+                    if (button) {
+                        button.addEventListener('click', function() {
+                            const lang = this.getAttribute('data-lang');
+                            if (lang) {
+                                applyLanguage(lang);
+                            }
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error('初始化时出错:', error);
+                // 显示错误信息给用户
+                const errorMessage = document.createElement('div');
+                errorMessage.style.cssText = 'background: #ffdddd; color: #990000; padding: 15px; margin: 15px; border-radius: 8px; text-align: center; font-weight: bold;';
+                errorMessage.textContent = '页面加载时发生错误，请刷新页面或联系管理员。';
+                document.body.appendChild(errorMessage);
+            }
+        };
+
+        // 收藏游戏管理
+        // 此处删除了重复的favoritesManager定义，使用脚本顶部的全局定义
+        
+        // 收藏切换函数
+        function toggleFavorite(event, gameId) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const favorites = favoritesManager.toggleFavorite(gameId);
+            const btn = event.currentTarget;
+            
+            if (favoritesManager.isFavorite(gameId)) {
+                btn.classList.add('active');
+                btn.querySelector('i').className = 'fas fa-heart';
+                btn.title = currentLang === 'zh' ? '从收藏中移除' : 'Remove from favorites';
+            } else {
+                btn.classList.remove('active');
+                btn.querySelector('i').className = 'far fa-heart';
+                btn.title = currentLang === 'zh' ? '添加到收藏' : 'Add to favorites';
+                
+                // 如果当前在"我的收藏"视图，则移除该卡片
+                if (document.querySelector('.favorite-filter.active')) {
+                    const card = btn.closest('.game-card');
+                    card.style.animation = 'fadeOut 0.3s forwards';
+                    setTimeout(() => {
+                        if (card.parentNode) card.parentNode.removeChild(card);
+                        // 检查是否没有收藏游戏了
+                        checkNoFavorites();
+                    }, 300);
+                }
+            }
+        }
+        
+        // 检查是否没有收藏游戏
+        function checkNoFavorites() {
+            const gamesContainer = document.getElementById('gamesContainer');
+            const favorites = favoritesManager.getFavorites();
+            
+            if (document.querySelector('.favorite-filter.active') && 
+                (!favorites.length || !gamesContainer.querySelector('.game-card'))) {
+                showNoFavoritesMessage();
+            }
+        }
+        
+        // 显示没有收藏游戏的消息
+        function showNoFavoritesMessage() {
+            const gamesContainer = document.getElementById('gamesContainer');
+            const noFavMsg = `
+                <div class="no-favorites">
+                    <div><i class="far fa-heart"></i></div>
+                    <div>
+                        <p>${currentLang === 'zh' ? translations.zh.noFavorites : translations.en.noFavorites}</p>
+                        <p>${currentLang === 'zh' ? translations.zh.startExploring : translations.en.startExploring}</p>
+                    </div>
+                </div>
+            `;
+            gamesContainer.innerHTML = noFavMsg;
+        }
+        
+        // 在页面加载完成后初始化收藏过滤器
+        window.addEventListener('DOMContentLoaded', function() {
+            // ... 现有初始化代码
+            
+            // 初始化收藏过滤器
+            initFavoritesFilter();
+        });
+        
+        // 修改现有的applyLanguage函数，更新收藏按钮和过滤器文本
+        const originalApplyLanguage = applyLanguage;
+        applyLanguage = function(lang) {
+            originalApplyLanguage(lang);
+            
+            // 更新收藏过滤器按钮文本
+            const filterBtn = document.getElementById('favoriteFilter');
+            if (filterBtn) {
+                const filterText = filterBtn.querySelector('span.lang-' + lang);
+                if (filterText) {
+                    filterBtn.querySelector('span:not(.lang-' + lang + ')').style.display = 'none';
+                    filterText.style.display = 'inline';
+                }
+            }
+            
+            // 更新收藏按钮的title属性
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const gameId = btn.getAttribute('data-id');
+                const isFavorite = favoritesManager.isFavorite(gameId);
+                btn.title = isFavorite ? 
+                    (lang === 'zh' ? '从收藏中移除' : 'Remove from favorites') :
+                    (lang === 'zh' ? '添加到收藏' : 'Add to favorites');
+            });
+        };
+    </script>
+
+    <!-- 添加卡通装饰元素容器 -->
+    <div class="cartoon-decoration">
+        <!-- 卡通房子 -->
+        <div class="house house1"></div>
+        <div class="house house2"></div>
+        <div class="house house3"></div>
+        
+        <!-- 卡通树木 -->
+        <div class="cartoon-tree tree-round"></div>
+        <div class="cartoon-tree tree-pine"></div>
+        
+        <!-- 卡通云朵 -->
+        <div class="cartoon-cloud cloud-small"></div>
+        <div class="cartoon-cloud cloud-medium"></div>
+        
+        <!-- 卡通小路 -->
+        <div class="path"></div>
+        
+        <!-- 卡通动物 -->
+        <div class="animal bird"></div>
+        
+        <!-- 卡通太阳 -->
+        <div class="sun"></div>
+    </div>
 </body>
 </html> 

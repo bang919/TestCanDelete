@@ -5,44 +5,321 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Game... | Wowlue Games</title>
     <meta name="description" content="Play the best online games at Wowlue Games">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 适合原木风的字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .game-controls {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
+        :root {
+            --primary-color: #8d6e63;
+            --secondary-color: #c19a6b;
+            --accent-color: #ffb74d;
+            --bg-color: #f9f3e5;
+            --card-bg: #fffaf0;
+            --text-color: #5d4037;
+            --shadow: 0 4px 15px rgba(141, 110, 99, 0.15);
+            --light-shadow: 0 2px 10px rgba(141, 110, 99, 0.1);
         }
-        .game-controls button {
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c19a6b' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 20L20 0v20H0zm40 0V0L20 20h20zm0 20l-20 20V20h20zM20 40L0 20v20h20z'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
         }
-        .game-controls button:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .game-container {
-            position: relative;
-        }
+
         .wechat-tip {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: #4CAF50;
+            background: #8d6e63;
             color: white;
             text-align: center;
             padding: 10px;
             z-index: 10000;
+            font-size: 0.9rem;
         }
+        
+        .wechat-tip button {
+            background: transparent;
+            border: none;
+            color: var(--accent-color);
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        /* 木纹纹理效果 */
+        header {
+            background: #a5805c;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%238d6e63' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            position: relative;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--light-shadow);
+            border-bottom: 2px solid rgba(141, 110, 99, 0.2);
+            overflow: hidden;
+        }
+
+        /* 叶子装饰 */
+        header::before, header::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+        
+        header::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            top: 20px;
+            left: 10%;
+            transform: rotate(-30deg);
+        }
+        
+        header::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            bottom: 20px;
+            right: 10%;
+            transform: rotate(45deg);
+        }
+
+        nav {
+            background: var(--card-bg);
+            padding: 1rem;
+            box-shadow: var(--light-shadow);
+            border-bottom: 2px solid rgba(141, 110, 99, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--secondary-color);
+        }
+
+        .game-title {
+            margin: 1rem 0;
+            font-size: 2.5rem;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 700;
+            color: #fff8e1;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-subtitle {
+            font-size: 1.2rem;
+            color: #fff8e1;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .game-container {
+            position: relative;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .game-iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            display: block;
+        }
+
+        .game-controls {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: rgba(141, 110, 99, 0.8);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-btn i {
+            font-size: 1.2rem;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 10px;
+            opacity: 0.6;
+        }
+
+        .game-info-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(141, 110, 99, 0.1);
+        }
+
+        .game-description-text {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--light-shadow);
+            border: 1px solid rgba(141, 110, 99, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .info-card:first-child::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238d6e63'%3E%3Cpath d='M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z'/%3E%3C/svg%3E");
+        }
+
+        .info-card:last-child::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238d6e63'%3E%3Cpath d='M9.5 14c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5zm3.5-1.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm5 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM4 6c-2.21 0-4 1.79-4 4v3h2v-3c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v7c0 1.1-.9 2-2 2H5v2h15c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4H4z'/%3E%3C/svg%3E");
+        }
+
+        .info-card-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .info-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        footer {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            box-shadow: 0 -2px 10px rgba(141, 110, 99, 0.1);
+            border-top: 2px solid rgba(141, 110, 99, 0.2);
+        }
+
         /* 全屏模式样式 */
         .fullscreen-mode {
             position: fixed !important;
@@ -52,9 +329,9 @@
             height: 100vh !important;
             z-index: 9999 !important;
             background: #000 !important;
-            border: none !important;
             margin: 0 !important;
             padding: 0 !important;
+            display: block !important;
         }
 
         /* 全屏时隐藏其他元素 */
@@ -62,7 +339,7 @@
             display: none !important;
         }
 
-        /* 防止 UC 浏览器滑动退出 */
+        /* 防止浏览器滑动退出 */
         .prevent-swipe {
             touch-action: none;
             -webkit-touch-callout: none;
@@ -70,73 +347,465 @@
             user-select: none;
             overscroll-behavior: contain;
         }
+
+        /* iframe 全屏样式 */
+        .iframe-fullscreen {
+            width: 100% !important;
+            height: 100% !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            border: none !important;
+        }
+
+        /* 装饰 */
+        .decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+        }
+        
+        .decoration:nth-child(1) {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            top: 20px;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+        
+        .decoration:nth-child(2) {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23c19a6b'%3E%3Cpath d='M503.5 204.6L502.8 202.8L433.1 33.12C428.3 19.75 415.2 12.04 402.2 13.29L195.7 33.27C182.7 34.71 171.1 47.31 169.5 60.29L156.7 192.3L48.12 193.8C34.22 193.1 21.55 203.8 19.72 217.6L2.147 340.5C.1187 354.7 9.172 367.1 22.94 371.9L255.1 479.5L490.4 371.4C504.4 366.6 512.4 352.3 509 338.5L509 336.5L503.5 204.6zM255.1 431.1L48.38 336.9L62.37 240.9L184.7 243.5L205.1 358.9C206.8 371.1 216.3 382.4 229.1 384.7L255.1 431.1zM111.3 190.4L134.1 62.52L321.5 42.58L396.6 220.5L111.3 190.4zM450.8 337.1L255.1 431.1L255.1 384.6L284.1 382.4C297.2 380.8 307.1 371.4 310.2 359.1L326.4 284.5L450.8 337.1z'/%3E%3C/svg%3E");
+            bottom: 30px;
+            right: 15%;
+            transform: rotate(15deg);
+        }
+
+        /* 语言切换按钮样式 */
+        .lang-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff8e1;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-btn.active {
+            background: var(--accent-color);
+            color: var(--text-color);
+            border-color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* 装饰性元素样式 */
+        .decoration-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none; /* 让元素不影响交互 */
+            z-index: 0;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.7;
+            z-index: 0;
+        }
+        
+        /* 树木元素 */
+        .tree1 {
+            width: 120px;
+            height: 180px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238d6e63'%3E%3Cpath d='M12,2L4,11H7L4,20H20L17,11H20L12,2Z'/%3E%3C/svg%3E");
+            left: 5%;
+            top: 120px;
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* 云朵元素 */
+        .cloud1 {
+            width: 150px;
+            height: 80px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f9f3e5'%3E%3Cpath d='M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z'/%3E%3C/svg%3E");
+            right: 15%;
+            top: 50px;
+            animation: cloudFloat 24s linear infinite reverse;
+        }
+        
+        /* 叶子元素 */
+        .leaf1 {
+            width: 40px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c19a6b'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            left: 35%;
+            top: 200px;
+            animation: fallRotate 12s linear infinite;
+        }
+        
+        .leaf2 {
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0,4-4A4,4,0,0,0,17,8Z'/%3E%3C/svg%3E");
+            right: 35%;
+            top: 150px;
+            animation: fallRotate 10s linear infinite 2s;
+        }
+        
+        /* 星星元素 */
+        .star1 {
+            width: 25px;
+            height: 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb74d'%3E%3Cpath d='M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z'/%3E%3C/svg%3E");
+            left: 25%;
+            top: 70px;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+        
+        /* 动画定义 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes cloudFloat {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(calc(100vw + 150px)); }
+        }
+        
+        @keyframes fallRotate {
+            0% { 
+                transform: translateY(-50px) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { 
+                transform: translateY(calc(100vh + 50px)) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        /* 游戏详情页中的封面图显示 */
+        .game-cover-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--secondary-color);
+        }
+
+        /* 新的文字收藏按钮样式 */
+        .favorite-action-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        
+        .text-favorite-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--secondary-color);
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--light-shadow);
+        }
+        
+        .text-favorite-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .text-favorite-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .text-favorite-btn i {
+            font-size: 1.1rem;
+        }
+        
+        .text-favorite-btn.active i {
+            color: white;
+        }
+
+        /* 为语言切换增加的样式 */
+        .lang-zh, .lang-en {
+            display: none; /* 默认隐藏所有语言元素 */
+        }
+        
+        /* 游戏标题样式调整 */
+        .game-title span {
+            display: block;
+            width: 100%;
+        }
+        
+        /* 游戏描述容器 */
+        .game-subtitle-container, .game-about-container, 
+        .controls-container, .features-container {
+            width: 100%;
+        }
+        
+        /* 列表样式调整 */
+        .info-list {
+            display: none;
+            width: 100%;
+        }
+        
+        /* 删除不再需要的双语布局样式 */
+        .bilingual-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* 删除以下样式，因为不再需要中英文并排 */
+        .bilingual-title,
+        .bilingual-description, 
+        .bilingual-about, 
+        .bilingual-lists {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .bilingual-description, .bilingual-about, .bilingual-lists {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #gameTitle, #gameDescription, #gameAbout, #gameControls, #gameFeatures {
+            width: 100%;
+        }
+
+        #gameTitleEn, #gameDescriptionEn, #gameAboutEn, #gameControlsEn, #gameFeaturesEn {
+            width: 100%;
+        }
     </style>
 </head>
-<body class="bg-gray-50 font-['Poppins']">
+<body>
+    <div class="decoration-container">
+        <div class="floating-element tree1"></div>
+        <div class="floating-element cloud1"></div>
+        <div class="floating-element leaf1"></div>
+        <div class="floating-element leaf2"></div>
+        <div class="floating-element star1"></div>
+    </div>
+
     <div class="wechat-tip" id="wechatTip">
-        在微信中访问？点击右上角 ··· 选择"在浏览器打开"获得最佳体验
+        <span class="lang-zh">在微信中访问？点击右上角 ··· 选择"在浏览器打开"获得最佳体验</span>
+        <span class="lang-en">Using WeChat? Click ··· in the top-right corner and select "Open in Browser" for the best experience</span>
         <button onclick="document.getElementById('wechatTip').style.display='none'" class="ml-2 text-sm underline">
-            知道了
+            <span class="lang-zh">知道了</span>
+            <span class="lang-en">Got it</span>
         </button>
     </div>
 
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-4">
-            <a href="../index.html" class="text-blue-500 hover:text-blue-600">← Back to Games</a>
+    <nav>
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> 
+                <span class="lang-zh">返回游戏列表</span>
+                <span class="lang-en">Back to Games</span>
+            </a>
         </div>
     </nav>
 
-    <header class="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-8">
-        <div class="container mx-auto px-4">
-            <h1 id="gameTitle" class="text-4xl md:text-5xl font-bold text-center mb-4">Loading...</h1>
-            <p id="gameDescription" class="text-xl text-center text-blue-100"></p>
+    <header>
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+        <div class="bilingual-container">
+            <h1 class="game-title">
+                <span id="gameTitleEn" class="lang-en"></span>
+                <span id="gameTitle" class="lang-zh"></span>
+            </h1>
+            <div class="game-subtitle-container">
+                <p id="gameDescriptionEn" class="game-subtitle lang-en"></p>
+                <p id="gameDescription" class="game-subtitle lang-zh"></p>
+            </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <div id="gameContainer" class="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl bg-black game-container mb-12">
-            <div class="game-controls">
-                <button onclick="toggleFullscreen()" title="Fullscreen">
-                    <i class="fas fa-expand"></i>
+    <div class="main-content">
+        <div class="container">
+            <div class="game-container" id="gameContainer">
+                <div class="game-controls">
+                    <button class="control-btn" onclick="toggleFullscreen()" title="全屏">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+                <iframe 
+                    id="gameFrame"
+                    src="about:blank"
+                    class="game-iframe"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
+
+            <div class="favorite-action-bar">
+                <button class="text-favorite-btn" id="gameFavoriteBtn">
+                    <i class="far fa-heart"></i>
+                    <span class="lang-zh">收藏此游戏</span>
+                    <span class="lang-en">Add to Favorites</span>
                 </button>
             </div>
-            <iframe 
-                id="gameFrame"
-                src="about:blank"
-                class="w-full aspect-video border-0"
-                allowfullscreen
-                loading="lazy"
-            ></iframe>
-        </div>
 
-        <section class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">About The Game</h2>
-            <div class="prose max-w-none">
-                <p id="gameAbout" class="text-lg text-gray-600 mb-6"></p>
-            </div>
-
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 mt-12">How To Play</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Controls</h3>
-                    <ul id="gameControls" class="list-disc list-inside text-gray-600"></ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Features</h3>
-                    <ul id="gameFeatures" class="list-disc list-inside text-gray-600"></ul>
+            <div class="game-info-card">
+                <h2 class="section-title">
+                    <span class="lang-en">Game Introduction</span>
+                    <span class="lang-zh">游戏介绍</span>
+                </h2>
+                <div class="game-about-container">
+                    <p id="gameAboutEn" class="game-description-text lang-en"></p>
+                    <p id="gameAbout" class="game-description-text lang-zh"></p>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Wowlue Games. All rights reserved.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3 class="info-card-title">
+                        <span class="lang-en">Game Controls</span>
+                        <span class="lang-zh">游戏操作</span>
+                    </h3>
+                    <div class="controls-container">
+                        <ul id="gameControlsEn" class="info-list lang-en"></ul>
+                        <ul id="gameControls" class="info-list lang-zh"></ul>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3 class="info-card-title">
+                        <span class="lang-en">Game Features</span>
+                        <span class="lang-zh">游戏特点</span>
+                    </h3>
+                    <div class="features-container">
+                        <ul id="gameFeaturesEn" class="info-list lang-en"></ul>
+                        <ul id="gameFeatures" class="info-list lang-zh"></ul>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <footer>
+        <div class="decoration"></div>
+        <div class="decoration"></div>
+        <p>
+            <span class="lang-zh">© 2023 Wowlue Games. 保留所有权利。</span>
+            <span class="lang-en">© 2023 Wowlue Games. All rights reserved.</span>
+        </p>
     </footer>
+
+    <div class="favorite-toast" id="favoriteToast">
+        <i class="fas fa-heart"></i>
+        <span id="favoriteToastMessage"></span>
+    </div>
 
     <script src="config.js"></script>
     <script>
+        // 语言配置
+        const translations = {
+            zh: {
+                loading: "加载中...",
+                fullscreen: "全屏",
+                exitFullscreen: "退出全屏",
+                addToFavorites: "添加到收藏",
+                removeFromFavorites: "从收藏中移除",
+                myFavorites: "我的收藏",
+                noFavorites: "您还没有收藏任何游戏",
+                startExploring: "开始探索并收藏您喜欢的游戏吧！"
+            },
+            en: {
+                loading: "Loading...",
+                fullscreen: "Fullscreen",
+                exitFullscreen: "Exit Fullscreen",
+                addToFavorites: "Add to favorites",
+                removeFromFavorites: "Remove from favorites",
+                myFavorites: "My Favorites",
+                noFavorites: "You haven't favorited any games yet",
+                startExploring: "Start exploring and favorite games you like!"
+            }
+        };
+        
+        // 多语言游戏信息
+        const gameTranslations = {
+            // 将在加载时从config.js动态生成
+        };
+        
+        // 当前语言
+        let currentLang = localStorage.getItem('preferredLanguage') || 'zh';
+        
+        // 应用语言
+        function applyLanguage(lang) {
+            // 保存用户语言偏好
+            localStorage.setItem('preferredLanguage', lang);
+            currentLang = lang;
+            
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // 隐藏所有语言元素
+            document.querySelectorAll('.lang-zh, .lang-en').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // 显示当前语言元素
+            document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                el.style.display = 'inline-block';
+            });
+            
+            // 特殊处理某些元素的样式以确保正确显示
+            document.querySelectorAll(`.info-list.lang-${lang}`).forEach(el => {
+                el.style.display = 'block';
+            });
+            
+            document.querySelectorAll(`.game-description-text.lang-${lang}`).forEach(el => {
+                el.style.display = 'block';
+            });
+            
+            // 更新动态内容
+            updateGameDetails();
+        }
+        
         function loadGameDetails() {
             const urlParams = new URLSearchParams(window.location.search);
             const gameId = urlParams.get('id');
@@ -146,56 +815,117 @@
                 window.location.href = '../index.html';
                 return;
             }
-
-            document.title = `${game.title} | Wowlue Games`;
-            document.getElementById('gameTitle').textContent = game.title;
-            document.getElementById('gameDescription').textContent = game.description;
+            
+            // 多语言游戏信息处理
+            if (!gameTranslations[gameId]) {
+                gameTranslations[gameId] = {
+                    zh: {
+                        title: game.title,
+                        description: game.description,
+                        about: game.about,
+                        controls: game.controls,
+                        features: game.features
+                    },
+                    en: {
+                        title: game.titleEn || game.title,
+                        description: game.descriptionEn || game.description,
+                        about: game.aboutEn || game.about,
+                        controls: game.controlsEn || game.controls,
+                        features: game.featuresEn || game.features
+                    }
+                };
+            }
+            
+            // 设置iframe源
             document.getElementById('gameFrame').src = game.iframeUrl;
-            document.getElementById('gameAbout').textContent = game.about;
-
+            
+            // 更新游戏详情
+            updateGameDetails();
+            
+            // 设置页面标题
+            const titleText = currentLang === 'zh' ? game.title : (game.titleEn || game.title);
+            document.title = `${titleText} | Wowlue Games`;
+        }
+        
+        function updateGameDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            
+            if (!gameTranslations[gameId]) return;
+            
+            const gameInfo = gameTranslations[gameId]['zh']; // 中文
+            const gameInfoEn = gameTranslations[gameId]['en']; // 英文
+            
+            // 更新游戏标题和描述
+            document.getElementById('gameTitle').textContent = gameInfo.title;
+            document.getElementById('gameTitleEn').textContent = gameInfoEn.title;
+            document.getElementById('gameDescription').textContent = gameInfo.description;
+            document.getElementById('gameDescriptionEn').textContent = gameInfoEn.description;
+            document.getElementById('gameAbout').textContent = gameInfo.about;
+            document.getElementById('gameAboutEn').textContent = gameInfoEn.about;
+            
+            // 更新操作列表 - 英文
+            const controlsListEn = document.getElementById('gameControlsEn');
+            controlsListEn.innerHTML = '';
+            gameInfoEn.controls.forEach(control => {
+                const li = document.createElement('li');
+                li.textContent = control;
+                controlsListEn.appendChild(li);
+            });
+            
+            // 更新操作列表 - 中文
             const controlsList = document.getElementById('gameControls');
-            game.controls.forEach(control => {
+            controlsList.innerHTML = '';
+            gameInfo.controls.forEach(control => {
                 const li = document.createElement('li');
                 li.textContent = control;
                 controlsList.appendChild(li);
             });
-
+            
+            // 更新特点列表 - 英文
+            const featuresListEn = document.getElementById('gameFeaturesEn');
+            featuresListEn.innerHTML = '';
+            gameInfoEn.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresListEn.appendChild(li);
+            });
+            
+            // 更新特点列表 - 中文
             const featuresList = document.getElementById('gameFeatures');
-            game.features.forEach(feature => {
+            featuresList.innerHTML = '';
+            gameInfo.features.forEach(feature => {
                 const li = document.createElement('li');
                 li.textContent = feature;
                 featuresList.appendChild(li);
             });
+            
+            // 确保应用当前语言设置
+            applyLanguage(currentLang);
         }
 
         function isWechat() {
             return /MicroMessenger/i.test(navigator.userAgent);
         }
-
+        
         function toggleFullscreen() {
             const gameFrame = document.getElementById('gameFrame');
-            const gameContainer = document.getElementById('gameContainer');
-            const allElements = document.querySelectorAll('body > *:not(#gameContainer)');
-
+            
             if (!document.fullscreenElement) {
                 // 进入全屏
-                if (gameContainer.requestFullscreen) {
-                    gameContainer.requestFullscreen();
-                } else if (gameContainer.webkitRequestFullscreen) {
-                    gameContainer.webkitRequestFullscreen();
-                } else if (gameContainer.msRequestFullscreen) {
-                    gameContainer.msRequestFullscreen();
+                if (gameFrame.requestFullscreen) {
+                    gameFrame.requestFullscreen();
+                } else if (gameFrame.webkitRequestFullscreen) {
+                    gameFrame.webkitRequestFullscreen();
+                } else if (gameFrame.msRequestFullscreen) {
+                    gameFrame.msRequestFullscreen();
                 }
-
-                // 添加全屏样式
-                gameContainer.classList.add('fullscreen-mode', 'prevent-swipe');
-                gameFrame.classList.add('fullscreen-mode');
                 
-                // 隐藏其他元素
-                allElements.forEach(el => el.classList.add('hide-in-fullscreen'));
-
+                // 添加全屏样式
+                gameFrame.classList.add('fullscreen-mode', 'iframe-fullscreen');
+                
                 // 阻止触摸滑动事件
-                gameContainer.addEventListener('touchmove', preventSwipe, { passive: false });
+                gameFrame.addEventListener('touchmove', preventSwipe, { passive: false });
             } else {
                 // 退出全屏
                 if (document.exitFullscreen) {
@@ -208,22 +938,13 @@
             }
         }
 
-        // 阻止滑动事件
         function preventSwipe(e) {
             e.preventDefault();
         }
 
-        // 监听全屏变化
-        document.addEventListener('fullscreenchange', handleFullscreenChange);
-        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
-
         function handleFullscreenChange() {
-            const gameContainer = document.getElementById('gameContainer');
             const gameFrame = document.getElementById('gameFrame');
-            const allElements = document.querySelectorAll('body > *:not(#gameContainer)');
-            const button = document.querySelector('.game-controls button[title="Fullscreen"] i');
+            const button = document.querySelector('.game-controls button[title="全屏"] i');
 
             if (document.fullscreenElement) {
                 button.classList.remove('fa-expand');
@@ -233,35 +954,177 @@
                 button.classList.add('fa-expand');
                 
                 // 移除全屏样式
-                gameContainer.classList.remove('fullscreen-mode', 'prevent-swipe');
-                gameFrame.classList.remove('fullscreen-mode');
-                
-                // 显示其他元素
-                allElements.forEach(el => el.classList.remove('hide-in-fullscreen'));
+                gameFrame.classList.remove('fullscreen-mode', 'iframe-fullscreen');
                 
                 // 移除触摸事件监听
-                gameContainer.removeEventListener('touchmove', preventSwipe);
+                gameFrame.removeEventListener('touchmove', preventSwipe);
             }
         }
 
-        // 在页面加载时添加触摸事件处理
+        // 监听全屏变化
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+        // 页面加载完成后的处理
         window.addEventListener('load', function() {
-            const gameContainer = document.getElementById('gameContainer');
+            const gameFrame = document.getElementById('gameFrame');
             
             // 阻止默认的触摸事件
-            gameContainer.addEventListener('touchstart', function(e) {
+            gameFrame.addEventListener('touchstart', function(e) {
                 if (document.fullscreenElement) {
                     e.preventDefault();
                 }
             }, { passive: false });
+            
+            // 设置语言切换监听器
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyLanguage(btn.dataset.lang);
+                });
+            });
         });
 
         window.onload = function() {
             loadGameDetails();
-            if (!isWechat()) {
-                document.getElementById('wechatTip').style.display = 'none';
+            
+            // 检查是否在微信浏览器中，如果不是则隐藏提示
+            const wechatTip = document.getElementById('wechatTip');
+            if (!isWechat() && wechatTip) {
+                wechatTip.style.display = 'none';
+            }
+            
+            // 初始化收藏按钮
+            initFavoriteButton();
+            
+            // 确保当前语言设置被正确应用
+            setTimeout(() => {
+                applyLanguage(currentLang);
+            }, 100);
+        };
+
+        // 收藏游戏管理
+        const favoritesManager = {
+            getFavorites() {
+                const favorites = localStorage.getItem('favoriteGames');
+                return favorites ? JSON.parse(favorites) : [];
+            },
+            
+            addFavorite(gameId) {
+                const favorites = this.getFavorites();
+                if (!favorites.includes(gameId)) {
+                    favorites.push(gameId);
+                    localStorage.setItem('favoriteGames', JSON.stringify(favorites));
+                }
+                return favorites;
+            },
+            
+            removeFavorite(gameId) {
+                let favorites = this.getFavorites();
+                favorites = favorites.filter(id => id !== gameId);
+                localStorage.setItem('favoriteGames', JSON.stringify(favorites));
+                return favorites;
+            },
+            
+            isFavorite(gameId) {
+                return this.getFavorites().includes(gameId);
+            },
+            
+            toggleFavorite(gameId) {
+                if (this.isFavorite(gameId)) {
+                    return this.removeFavorite(gameId);
+                } else {
+                    return this.addFavorite(gameId);
+                }
             }
         };
+        
+        // 收藏按钮初始化
+        function initFavoriteButton() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            const favoriteBtn = document.getElementById('gameFavoriteBtn');
+            
+            if (!gameId || !favoriteBtn) return;
+            
+            // 设置初始状态
+            updateFavoriteButtonState(favoriteBtn, gameId);
+            
+            // 添加点击事件
+            favoriteBtn.addEventListener('click', function() {
+                const isFavorited = favoritesManager.toggleFavorite(gameId);
+                updateFavoriteButtonState(favoriteBtn, gameId);
+                
+                // 显示通知
+                const toastMessage = document.getElementById('favoriteToastMessage');
+                const toast = document.getElementById('favoriteToast');
+                
+                if (favoritesManager.isFavorite(gameId)) {
+                    toastMessage.textContent = currentLang === 'zh' ? 
+                        '已添加到收藏' : 'Added to favorites';
+                } else {
+                    toastMessage.textContent = currentLang === 'zh' ? 
+                        '已从收藏中移除' : 'Removed from favorites';
+                }
+                
+                toast.classList.add('show');
+                
+                // 3秒后隐藏通知
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
+        }
+        
+        // 更新收藏按钮状态
+        function updateFavoriteButtonState(btn, gameId) {
+            const isFavorite = favoritesManager.isFavorite(gameId);
+            
+            if (isFavorite) {
+                btn.classList.add('active');
+                btn.querySelector('i').className = 'fas fa-heart';
+                
+                // 更新文本内容
+                const zhSpan = btn.querySelector('.lang-zh');
+                const enSpan = btn.querySelector('.lang-en');
+                
+                if (zhSpan) zhSpan.textContent = '已收藏';
+                if (enSpan) enSpan.textContent = 'Favorited';
+            } else {
+                btn.classList.remove('active');
+                btn.querySelector('i').className = 'far fa-heart';
+                
+                // 更新文本内容
+                const zhSpan = btn.querySelector('.lang-zh');
+                const enSpan = btn.querySelector('.lang-en');
+                
+                if (zhSpan) zhSpan.textContent = '收藏此游戏';
+                if (enSpan) enSpan.textContent = 'Add to Favorites';
+            }
+        }
+        
+        // 修改语言应用函数，确保收藏按钮文本也更新
+        const originalApplyLanguage = applyLanguage;
+        applyLanguage = function(lang) {
+            originalApplyLanguage(lang);
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            const favoriteBtn = document.getElementById('gameFavoriteBtn');
+            
+            if (gameId && favoriteBtn) {
+                updateFavoriteButtonState(favoriteBtn, gameId);
+            }
+        };
+        
+        // 页面加载时初始化收藏按钮
+        window.addEventListener('load', function() {
+            // ... 现有代码
+            
+            // 初始化收藏按钮
+            initFavoriteButton();
+        });
     </script>
 </body>
 </html> 

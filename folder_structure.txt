@@ -1,19 +1,5 @@
 wowlue.com/
-├── images/
-│   ├── survivors/
-│   │   └── cover.png
-│   ├── pvz/
-│   │   └── cover.png
-│   ├── 3d-cube/
-│   │   └── cover.png
-│   ├── street-racing/
-│   │   └── cover.png
-│   └── drift-racing/
-│       └── cover.png
 ├── games/
-│   ├── survivors.html
-│   ├── plants-vs-zombies.html
-│   ├── 3d-cube.html
-│   ├── street-racing.html
-│   └── drift-racing.html
+│   ├── config.js
+│   └── game-detail.html
 └── index.html 
